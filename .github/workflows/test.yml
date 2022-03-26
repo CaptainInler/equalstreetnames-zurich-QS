@@ -34,4 +34,4 @@ jobs:
       - name: Download a single artifact
         uses: actions/download-artifact@v3
         with:
-          name: Failed.py
+          name: /home/runner/work/equalstreetnames-zurich-QS/equalstreetnames-zurich-QS/Failed.py
