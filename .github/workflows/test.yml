@@ -32,7 +32,6 @@ jobs:
           #cache-dependency-path: # optional
       - run: python test.py
       - uses: actions/download-artifact@v3
-      - name: Download a single artifact
         with:
           name: my-artifact
           path: /home/runner/work/equalstreetnames-zurich-QS/equalstreetnames-zurich-QS
