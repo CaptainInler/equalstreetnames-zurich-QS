@@ -29,7 +29,7 @@ jobs:
           #token: # optional, default is ${{ github.token }}
           # Used to specify the path to dependency files. Supports wildcards or a list of file names for caching multiple dependencies.
           #cache-dependency-path: # optional
-      - run: python my_script.py
+      - run: python test.py
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
