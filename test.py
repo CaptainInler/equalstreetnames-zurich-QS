@@ -10,5 +10,5 @@ if __name__== "__main__":
   
   dir_list = os.listdir(directory_path)
  
-  print("Files and directories in '", path, "' :")
+  print("Files and directories in '", directory_path, "' :")
   print(dir_list)
