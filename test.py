@@ -7,3 +7,8 @@ if __name__== "__main__":
 
   directory_path = os.getcwd()
   print("My current directory is : " + directory_path)
+  
+  dir_list = os.listdir(directory_path)
+ 
+  print("Files and directories in '", path, "' :")
+  print(dir_list)
