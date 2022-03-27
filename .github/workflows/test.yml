@@ -34,4 +34,4 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: Failed.py
-          path: /home/runner/work/equalstreetnames-zurich-QS/equalstreetnames-zurich-QS
+          #path: /home/runner/work/equalstreetnames-zurich-QS/equalstreetnames-zurich-QS
