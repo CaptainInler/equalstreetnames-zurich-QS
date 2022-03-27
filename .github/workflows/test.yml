@@ -33,5 +33,5 @@ jobs:
       - run: python test.py
       - uses: actions/download-artifact@v3
         with:
-          name: my-artifact
+          name: Failed.py
           path: /home/runner/work/equalstreetnames-zurich-QS/equalstreetnames-zurich-QS
