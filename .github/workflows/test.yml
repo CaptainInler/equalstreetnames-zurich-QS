@@ -31,7 +31,14 @@ jobs:
           # Used to specify the path to dependency files. Supports wildcards or a list of file names for caching multiple dependencies.
           #cache-dependency-path: # optional
       - run: python test.py
-      - uses: actions/download-artifact@v3
+
+      - name: Commit to repo
+        #working-directory: cities/switzerland/zurich
+        run: |
+          git config --local user.name github-actions[bot]
+          git config --local user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git commit -m "Testcommit"
+      - name: Push changes
+        uses: ad-m/github-push-action@master
         with:
-          name: Failed.py
-          #path: /home/runner/work/equalstreetnames-zurich-QS/equalstreetnames-zurich-QS
+          github_token: ${{ secrets.ACCESS_TOKEN }}
