@@ -24,6 +24,7 @@ jobs:
           python-version: 3.9
           # Used to specify a package manager for caching in the default directory. Supported values: pip, pipenv.
           #cache: # optional
+          cache: 'pip'
           # The target architecture (x86, x64) of the Python interpreter.
           architecture: x64
           # Used to pull python distributions from actions/python-versions. Since there's a default, this is typically not supplied by the user.
@@ -31,6 +32,7 @@ jobs:
           # Used to specify the path to dependency files. Supports wildcards or a list of file names for caching multiple dependencies.
           #cache-dependency-path: # optional
           #cache-dependency-path: wdComplete
+      - run: pip install -r wdComplete-requirements.txt
       - run: python wdComplete.py
 
       - name: Commit to repo
