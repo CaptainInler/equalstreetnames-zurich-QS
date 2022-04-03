@@ -2,7 +2,7 @@ import os
 import sys
 import json
 import requests
-from SPARQLWrapper import SPARQLWrapper
+from SPARQLWrapper import SPARQLWrapper, JSON
 
 if __name__== "__main__":
   
