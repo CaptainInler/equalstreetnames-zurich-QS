@@ -32,6 +32,7 @@ jobs:
           # Used to specify the path to dependency files. Supports wildcards or a list of file names for caching multiple dependencies.
           #cache-dependency-path: # optional
           #cache-dependency-path: wdComplete
+          cache-dependency-path: 'wdComplete-requirements.txt'
       - run: pip install -r wdComplete-requirements.txt
       - run: python wdComplete.py
 
