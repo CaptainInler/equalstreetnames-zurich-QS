@@ -8,7 +8,7 @@ if __name__== "__main__":
   response = json.loads(requests.get(url).text)
   
   for i in response['features']:
-    print(f"Name: {['properties']['str_name']}")
+    print(f"Name: {i['properties']['str_name']}")
   
   with open('wdCompleteResult', 'w') as file:
     file.write('whatever')
