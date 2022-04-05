@@ -22,7 +22,7 @@ if __name__== "__main__":
   endpoint_url = "https://query.wikidata.org/sparql"
   
   for i in response['features']:
-    print(f"Name: {i['properties']['str_name']}, Number: {i['properties']['str_nr']}")
+    #print(f"Name: {i['properties']['str_name']}, Number: {i['properties']['str_nr']}")
     name = i['properties']['str_name']
     query = """SELECT ?streetnameLabel ?x WHERE {
       ?streetname wdt:P1945 ?streetkey;
