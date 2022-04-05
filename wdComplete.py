@@ -24,16 +24,17 @@ if __name__== "__main__":
   for i in response['features']:
     #print(f"Name: {i['properties']['str_name']}, Number: {i['properties']['str_nr']}")
     name = i['properties']['str_name']
-    query = """SELECT ?streetnameLabel ?x WHERE {
+    query = """SELECT ?nativename ?streetkey WHERE {
       ?streetname wdt:P1945 ?streetkey;
           wdt:P131 wd:Q72;
-                  wdt:P1705 ?x.
-      FILTER regex(?x, '""" + name + """' )
+                  wdt:P1705 ?nativename.
+      FILTER regex(?nativename, '""" + name + """' )
       SERVICE wikibase:label { bd:serviceParam wikibase:language "de" . } 
     }"""
     
     results = get_results(endpoint_url, query)
     print(results["results"]["bindings"][0])
+    print(results["results"]["bindings"][0]["streetkey"]["value"])
 
     break
     
