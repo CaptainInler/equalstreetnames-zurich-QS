@@ -34,15 +34,12 @@ if __name__== "__main__":
     
     results = get_results(endpoint_url, query)
 
-    for result in results["results"]["bindings"]:
-        if result:
-          print("ok")
+    #for result in results["results"]["bindings"]:
+     #   if result:
+      #    print("ok")
 
-    
-    
-  
   with open('wdCompleteResult', 'w') as file:
-    file.write('whatever')
+    file.write(results["results"]["bindings"][0])
 
 
   #directory_path = os.getcwd()
