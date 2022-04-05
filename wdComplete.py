@@ -33,7 +33,10 @@ if __name__== "__main__":
     }"""
     
     results = get_results(endpoint_url, query)
+    print(results["results"]["bindings"][0])
 
+    break
+    
     #for result in results["results"]["bindings"]:
      #   if result:
       #    print("ok")
