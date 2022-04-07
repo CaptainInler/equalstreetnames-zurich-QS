@@ -1,7 +1,7 @@
-#import os
 import sys
 import json
 import requests
+import time
 from SPARQLWrapper import SPARQLWrapper, JSON
 
 
@@ -19,6 +19,8 @@ def keyFree(dict, key):
     return False
   return True
 
+with open('wdCompleteResult', 'w') as file:
+	file.write(f"run {time.asctime( time.localtime(time.time()) )}\n")
 	
 endpoint_url = "https://query.wikidata.org/sparql"
 query = """SELECT ?nativename ?streetkey WHERE {
