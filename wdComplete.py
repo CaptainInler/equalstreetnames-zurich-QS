@@ -1,57 +1,58 @@
-import os
+#import os
 import sys
 import json
 import requests
 from SPARQLWrapper import SPARQLWrapper, JSON
 
-if __name__== "__main__":
-  
-  def get_results(endpoint_url, query):
-    user_agent = "WDQS-example Python/%s.%s" % (sys.version_info[0], sys.version_info[1])
-    # TODO adjust user agent; see https://w.wiki/CX6
-    sparql = SPARQLWrapper(endpoint_url, agent=user_agent)
-    sparql.setQuery(query)
-    sparql.setReturnFormat(JSON)
-    return sparql.query().convert()
-  
-  # Abfrage alle Strassen von OGD
-  url = "https://www.ogd.stadt-zuerich.ch/wfs/geoportal/Strassennamenverzeichnis?service=WFS&version=1.1.0&request=GetFeature&outputFormat=GeoJSON&typename=sv_str_verz&propertyname=str_name,str_nr"
-  response = json.loads(requests.get(url).text)
-  
-  #Abfrage Wikidata
-  endpoint_url = "https://query.wikidata.org/sparql"
-  
-  for i in response['features']:
-    #print(f"Name: {i['properties']['str_name']}, Number: {i['properties']['str_nr']}")
-    name = i['properties']['str_name']
-    query = """SELECT ?nativename ?streetkey WHERE {
-      ?streetname wdt:P1945 ?streetkey;
-          wdt:P131 wd:Q72;
-                  wdt:P1705 ?nativename.
-      FILTER regex(?nativename, '""" + name + """' )
-      SERVICE wikibase:label { bd:serviceParam wikibase:language "de" . } 
-    }"""
-    
-    results = get_results(endpoint_url, query)
-    
-    #print(results["results"]["bindings"][0])
-    #print(results["results"]["bindings"][0]["streetkey"]["value"])
-    
-    for result in results["results"]["bindings"]:
-        if result:
-          if int(result["streetkey"]["value"]) != int(i['properties']['str_nr']):
-            print("Problem bei der Strassennr.: " + i['properties']['str_name'])
-        else:
-          print("Strasse nicht in Wikidata: " + i['properties']['str_name'])
 
-  #with open('wdCompleteResult', 'w') as file:
-  #  file.write(results["results"]["bindings"][0])
+def get_results(endpoint_url, query):
+	user_agent = "WDQS-example Python/%s.%s" % (sys.version_info[0], sys.version_info[1])
+	print(user_agent)
+	sparql = SPARQLWrapper(endpoint_url, agent=user_agent)
+	sparql.setQuery(query)
+	sparql.setReturnFormat(JSON)
+	result = sparql.query().convert()
+	return result
+	
+def keyFree(dict, key):  
+  if key in dict.keys():
+    return False
+  return True
+
+	
+endpoint_url = "https://query.wikidata.org/sparql"
+query = """SELECT ?nativename ?streetkey WHERE {
+				?streetname wdt:P1945 ?streetkey;
+				wdt:P131 wd:Q72;
+				wdt:P1705 ?nativename.
+				SERVICE wikibase:label { bd:serviceParam wikibase:language "de" . } 
+				}"""
+
+results = get_results(endpoint_url, query)
+
+dataWD={}
+
+for binding in results["results"]["bindings"]:
+	key=int(binding["streetkey"]["value"])
+	if keyFree(dataWD, key):
+		dataWD[key]=binding["nativename"]["value"]
+	else:
+		print(f"Streetkey {key} for more then one street in use")
+		with open('wdCompleteResult', 'a') as file:
+			file.write(f"Streetkey {key} for more then one street in use\n")
 
 
-  #directory_path = os.getcwd()
-  #print("My current directory is : " + directory_path)
+
+url = "https://www.ogd.stadt-zuerich.ch/wfs/geoportal/Strassennamenverzeichnis?service=WFS&version=1.1.0&request=GetFeature&outputFormat=GeoJSON&typename=sv_str_verz&propertyname=str_name,str_nr,str_st_id_ref"
+
+response = json.loads(requests.get(url).text)
+
+for i in response['features']:
+	# Check only if State of Street is 1 (=Existing)	
+	if int(i['properties']['str_st_id_ref']) == 1 and not int(i['properties']['str_nr']) in dataWD:
+		print(f"Wikidata-Item not existing or not complete: {i['properties']['str_name']} {i['properties']['str_nr']}")
+		with open('wdCompleteResult', 'a') as file:
+			file.write(f"Wikidata-Item not existing or not complete: {i['properties']['str_name']} {i['properties']['str_nr']}\n")
+
+		
   
-  #dir_list = os.listdir(directory_path)
- 
-  #print("Files and directories in '", directory_path, "' :")
-  #print(dir_list)
