@@ -23,3 +23,4 @@ see File: [wdCompleteResult](https://github.com/CaptainInler/equalstreetnames-zu
   - Street signs in Zürich
   - [Street itself]
   - [Person mentioned]
+- [ ] Check "municipality president" if used as `position held` (P39): `municipality president (Switzerland)` and not as `occupation` (P106)
