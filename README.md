@@ -24,3 +24,5 @@ see File: [wdCompleteResult](https://github.com/CaptainInler/equalstreetnames-zu
   - [Street itself]
   - [Person mentioned]
 - [ ] Check "municipality president" if used as `position held` (P39): `municipality president (Switzerland)` and not as `occupation` (P106)
+- [ ] Check for Person with HDS-Entry but no Wikipedia entry e.g. [Benjamin Fritschi](https://www.wikidata.org/wiki/Q96364313)
+- [ ] Check for all Person with political Background for missing statements. e.g. Gemeindepräsident, Gemeinderat, Stadtrat, Kantonsrat. e.g. [Benjamin Fritschi](https://www.wikidata.org/wiki/Q96364313)
