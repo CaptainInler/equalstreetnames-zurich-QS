@@ -14,4 +14,4 @@ see File: [wdCompleteResult](https://github.com/CaptainInler/equalstreetnames-zu
 # ToDo
 - [ ] Add ESID to Streets in Wikidata. 
 - [ ] Check differences in Wikidate-Statements of Streets in Geneva and Zurich. Are there any? If yes, how to adjust them?
-- [ ] Check, if in Wikidata if all Personen giving there name to a street, have statements: date of birth, date of death, occupation (P106)
+- [ ] Check, if in Wikidata if all Personen giving there name to a street, have statements: date of birth, date of death, occupation (P106). Example: [Arnold Schaufelberger](https://www.wikidata.org/wiki/Q111201567)
