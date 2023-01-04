@@ -1,14 +1,18 @@
 # equalstreetnames-zurich-QS
 Data quality control of zurich.equalstreetnames.eu
-This repo contains some Datatest and there resuts
+This repo contains some Datatest and there results
 
-## wdComplete
-### Testcase
+# Docker
+1. `docker build -t eqsn/zuriqs .`
+2. `docker run --rm -p 8888:8888 -v "${PWD}":/home/jovyan/work eqsn/zuriqs`
+
+# wdComplete
+## Testcase
  - Are all Streets from [Strassennamenverzeichnis](https://data.stadt-zuerich.ch/dataset/geo_strassennamenverzeichnis) in Wikidata
    - Checks only Street from [Strassennamenverzeichnis](https://data.stadt-zuerich.ch/dataset/geo_strassennamenverzeichnis) with ```str_st_id_ref = 1```
  - Do Streets in Wikidata have a Statement ```nativename``` and ```streetkey``` and are within the City of Zürich.
 
-### Results
+## Results
 see File: [wdCompleteResult](https://github.com/CaptainInler/equalstreetnames-zurich-QS/blob/main/wdCompleteResult)
 
 # ToDo
